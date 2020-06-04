@@ -1,0 +1,102 @@
+html, body  {
+  /* 参照简书的设置 */
+  font-family: "PingFangSC-Regular", "PingFangSC-Medium", arial, "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-size: 12px;
+  width: 100%;
+  height: 100%;
+  word-spacing: 1px;
+  color: #132144;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+/*a标签下划线去除 */
+a {
+  text-decoration: none;
+  color: #132144
+}
+
+a:hover {
+  color: #0077FF;
+  text-decoration: underline
+}
+
+/* 图片动画效果 */
+img.animate {
+  transform: scale(1);
+  -ms-transform: scale(1);
+  -moz-transform: scale(1);
+  -webkit-transform: scale(1);
+  -o-transform: scale(1);
+
+  transition: transform 1s;
+  -moz-transition: transform 1s;
+  -webkit-transition: transform 1s;
+  -o-transition: transform 1s;
+}
+
+img.animate:hover {
+  transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  /* IE 9 */
+  -moz-transform: scale(1.2);
+  /* Firefox */
+  -webkit-transform: scale(1.2);
+  /* Safari 和 Chrome */
+  -o-transform: scale(1.2);
+  /* Opera */
+}
+
+/* 颜色 */
+
+.c-fff {
+  color: #fff
+}
+
+.c-132 {
+  color: #132144
+}
+
+.c-999 {
+  color: #999
+}
+
+/* 距离 */
+.mt-10 {
+  margin-top: 10px
+}
+
+.mt-12 {
+  margin-top: 12px
+}
+
+.mt-20 {
+  margin-top: 20px
+}
+
+.mt-50 {
+  margin-top: 50px
+}
+/* 字体大小 */
+.ft-22 {
+  font-size: 22px
+}
+/* 常用属性 */
+.p-relative {
+  position: relative
+}
+
+.t-ct {
+  text-align: center
+}
+
+.t-rt {
+  text-align: right
+}
+
+.f-bold {
+  font-weight: bold
+}

@@ -1,7 +1,7 @@
 
 <%- include(
   '../layouts/index', {
-    title: '登录页',
+    title: '注册页',
   })
 %>
 
@@ -18,12 +18,12 @@
     transform: translate(-50%, -50%)
   }
 </style>
-<!-- v-cloak -->
-<section id="login-page" class="login-page p-relative">
+
+<section id="login-page" class="login-page p-relative" v-cloak>
   <div class="section-con">
     <div class="t-ct ft-22 f-bold">
       <div class="mt-50 t-ct ft-22 f-bold">
-        来了，老弟！
+        来吧，老弟！
       </div>
     </div>
     <el-form
@@ -32,26 +32,47 @@
       :model="form"
       :rules="rules">
       <el-form-item
-        prop="name"
-        required>
+        prop="name">
         <el-input
           v-model.trim="form.name"
-          placeholder="请输入用户名/邮箱"
+          placeholder="请输入用户名"
           @keyup.enter.native="submit"
           clearable>
         </el-input>
       </el-form-item>
       <el-form-item
-        prop="password"
-        required>
+        prop="email">
         <el-input
-          v-model="form.password"
-          placeholder="请输入密码"
-          show-password
-          type="password"
-          maxlength="20"
+          v-model.trim="form.email"
+          placeholder="请输入邮箱"
           @keyup.enter.native="submit"
           clearable>
+        </el-input>
+      </el-form-item>
+      <el-form-item
+        prop="password">
+        <el-input
+          v-model="form.password"
+          show-password
+          clearable
+          placeholder="请输入密码"
+          type="password"
+          maxlength="20"
+          @blur="checkPsd"
+          @keyup.enter.native="submit">
+        </el-input>
+      </el-form-item>
+      <el-form-item
+        prop="confirmPassword">
+        <el-input
+          v-model="form.confirmPassword"
+          show-password
+          clearable
+          placeholder="请确认密码"
+          type="password"
+          maxlength="20"
+          @blur="checkPsd"
+          @keyup.enter.native="submit">
         </el-input>
       </el-form-item>
     </el-form>
@@ -60,7 +81,7 @@
         type="primary"
         style="width: 100%"
         @click.stop="submit">
-        登录
+        注册
       </el-button>
     </div>
     <el-row class="mt-10 c-132">
@@ -77,13 +98,14 @@
         </span>
         <span class="c-999">|</span>
         <span>
-          <a href="/auth/register">立即注册</a>
+          <a href="/auth/login">去登录</a>
         </span>
       </el-col>
     </el-row>
   </div>
 </section>
 
+<script src="/js/regex.js"></script>
 <script src="/js/rules/auth.js"></script>
 <script>
   var invite = new Vue({
@@ -93,13 +115,26 @@
 					return {
             form: {
               name: '',
-              password: ''
+              email: '',
+              password: '',
+              confirmPassword: ''
             },
-            rules: authRule()
+            rules: authRule(2)
 					}
 				},
 				mounted() {},
         methods: {
+          checkPsd() {
+            const { password, confirmPassword} = this.form;
+            if (password && confirmPassword && (password !== confirmPassword)) {
+              this.$message({
+                type: 'warning',
+                message: '两次密码输入不一致',
+                offset: 360
+              })
+              this.form.confirmPassword = '';
+            }
+          },
           submit() {
             this.$refs.login.validate((valid) => {
               if (valid) {
