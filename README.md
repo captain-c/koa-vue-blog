@@ -9,8 +9,10 @@
 
 ejs搭配koa-views做前端模板渲染，koa-static处理前端静态资源
 
+前端使用vue+element+axios，当前版本还未使用webpack打包工具
+
 ## 自动建表
 ### 执行以下命令
 ```
-node server/sql/index.js
+node app.js
 ```
