@@ -1,13 +1,11 @@
 const router = require('@koa/router')(); // 直接实例化router对象
+const { UserController } = require('../../controller/user');
 
-router.post('/login', async (ctx, next) => {
-  
-});
+// router.post('/login', async (ctx, next) => {
+// });
 
-router.get('/register', async (ctx, next) => {
-  res.write('api');
-  res.end();
-});
+// 注册接口
+router.post('/register', UserController.create);
 
 
 module.exports = router;

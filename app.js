@@ -1,5 +1,5 @@
 const Koa = require(`koa`);
-// const parser = require('koa-bodyparser');
+const parser = require('koa-bodyparser');
 const views = require('koa-views');
 const path = require('path');
 const static = require('koa-static');
@@ -7,6 +7,7 @@ const routes = require('./server/router');
 const api = require('./server/api');
 const app = new Koa();
 
+app.use(parser()); // 处理post数据
 const staticPath = './public/static';
 // 处理静态资源文件
 app.use(static(

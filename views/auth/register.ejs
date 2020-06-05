@@ -138,7 +138,11 @@
           submit() {
             this.$refs.login.validate((valid) => {
               if (valid) {
-                // todo 写接口
+                apiRegister(this.form).then(res => {
+                  console.log(res);
+                }).catch(err => {
+                  console.log(err);
+                });
               } else {
                 // error
                 console.log(`出错了`);
