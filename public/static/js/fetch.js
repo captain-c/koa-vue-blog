@@ -10,6 +10,10 @@ fetch.interceptors.request.use(
 	function(config) {
     // config.headers['x-client'] = 'pc';
     // config.headers['x-client-version'] = '3.9';
+    const token = localStorage.getItem('USER_TOKEN');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
 		return config;
 	},
 	function(err) {
@@ -37,6 +41,14 @@ fetch.interceptors.response.use(
 function apiRegister(data) {
   return fetch({
 		url: '/api/v1/auth/register',
+		method: 'post',
+		data
+	});
+}
+
+function apiLogin(data) {
+  return fetch({
+		url: '/api/v1/auth/login',
 		method: 'post',
 		data
 	});

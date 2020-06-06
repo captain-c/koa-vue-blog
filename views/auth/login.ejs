@@ -19,7 +19,7 @@
   }
 </style>
 <!-- v-cloak -->
-<section id="login-page" class="login-page p-relative">
+<section id="login-page" class="login-page p-relative" v-cloak>
   <div class="section-con">
     <div class="t-ct ft-22 f-bold">
       <div class="mt-50 t-ct ft-22 f-bold">
@@ -46,12 +46,13 @@
         required>
         <el-input
           v-model="form.password"
+          show-password
+          clearable
           placeholder="请输入密码"
           show-password
           type="password"
           maxlength="20"
-          @keyup.enter.native="submit"
-          clearable>
+          @keyup.enter.native="submit">
         </el-input>
       </el-form-item>
     </el-form>
@@ -87,7 +88,7 @@
 <script src="/js/rules/auth.js"></script>
 <script>
   window.onload = function() {
-    var invite = new Vue({
+    var login = new Vue({
 			  delimiters: ['{{', '}}'],
 				el: '#login-page',
 				data: function() {
@@ -104,7 +105,13 @@
           submit() {
             this.$refs.login.validate((valid) => {
               if (valid) {
-                // todo 写接口
+                apiLogin(this.form).then(({ result }) => {
+                  const { token } = result;
+                  localStorage.setItem('USER_TOKEN', token);
+                  location.href = '/admin/dashboard/index';
+                }).catch(err => {
+                  console.log(err);
+                });
               } else {
                 // error
                 console.log(`出错了`);
