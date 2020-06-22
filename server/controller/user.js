@@ -99,14 +99,13 @@ class UserController {
     ctx.body = user;
   }
   // 用户信息
-  static async getInfo(ctx) {
-    const { id } = ctx.params; // 获取参数
+  static async getInfo(id) {  
     const user = await User.findOne({
       where: {
         id // 查找name/ 
       }
     });
-    ctx.body = user;
+    return user;
   }
 }
 

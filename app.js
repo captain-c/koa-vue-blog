@@ -17,9 +17,9 @@ const app = new Koa();
 // Start [可选]指定是否在退出构造函数之前启动作业，默认情况下，此值设置为false。
 // timeZone [可选] -指定执行的时区。这将修改相对于您的时区的实际时间 ，不设置为当前所在时区。
 // https://blog.csdn.net/weixin_34318272/article/details/93169326
-// 0 0 08 * * *
+// 0 0 08 * * *   |  */10 * * * * *
 const getBiYingImg = new Cron('*/10 * * * * *', function () {
-  GrabImg.grab();
+  GrabImg.grab(1, __dirname);
 }, null, false);
 getBiYingImg.start();
 
